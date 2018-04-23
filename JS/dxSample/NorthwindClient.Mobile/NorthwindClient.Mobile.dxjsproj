@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>78322228-3bd8-4736-8f5d-fb2281d9468d</ProjectGuid>
+    <AutoAssignPort>True</AutoAssignPort>
+    <RunInSimulator>True</RunInSimulator>
+    <ApplicationPage>app.html</ApplicationPage>
+    <Name>NorthwindClient.Mobile</Name>
+    <RootNamespace>NorthwindClient.Mobile</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="app.js" />
+    <Content Include="app.html" />
+    <Content Include="app.css" />
+    	  <Content Include="css\dx.common.css">
+      <SubType>Content</SubType>
+    </Content>
+<Content Include="css\dx.android.holo-dark.css" />
+    <Content Include="css\dx.desktop.default.css" />
+    <Content Include="css\dx.ios.default.css" />
+    <Content Include="css\dx.win8.black.css" />
+    <Content Include="css\dx.win8.white.css" />
+    <Content Include="css\dx.win8.black.small.css" />
+    	  <Content Include="layouts\Navbar\NavbarLayout.js">
+      <SubType>Content</SubType>
+    </Content>
+<Content Include="layouts\Navbar\NavbarLayout.css" />
+    <Content Include="layouts\Navbar\NavbarLayout.html" />
+    <Content Include="layouts\SlideOut\SlideOutLayout.css" />
+    <Content Include="layouts\SlideOut\SlideOutLayout.html" />
+    <Content Include="layouts\SlideOut\SlideOutLayout.js" />
+    <Content Include="layouts\Empty\EmptyLayout.css" />
+    <Content Include="layouts\Empty\EmptyLayout.html" />
+    <Content Include="layouts\Empty\EmptyLayout.js" />
+    <Content Include="js\dx.all.js" />
+    
+    
+    
+    <Content Include="js\globalize.js" />
+    <Content Include="js\jquery-1.9.1.min.js" />
+    <Content Include="js\knockout-2.2.1.js" />
+    <Content Include="northwindclient.config.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\customer\customers.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\customer\customers.dxview">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\customer\customers.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\custOrderHist\cust-order-hist.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\custOrderHist\cust-order-hist.dxview">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\custOrderHist\cust-order-hist.js">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="css\" />
+    <Folder Include="data\" />
+    <Folder Include="js\" />
+    <Folder Include="layouts\" />
+    <Folder Include="layouts\Empty\" />
+    <Folder Include="layouts\Navbar\" />
+    <Folder Include="layouts\SlideOut\" />
+    <Folder Include="views\" />
+    <Folder Include="views\customer\" />
+    <Folder Include="views\custOrderHist" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NorthwindClient.Shared\NorthwindClient.Shared.dxjsproj">
+      <Name>NorthwindClient.Shared</Name>
+      <Project>edd6f747-9196-4cd1-9076-456d787567b9</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <Target Name="Build">
+    <!--
+    <Message Text="'$(MSBuildToolsPath)'"></Message>
+    -->
+    <Message Text="Build JSProject '$(MSBuildProjectFile)':" Importance="high">
+    </Message>
+    <Message Text="Copying refenecses to output dir..." Importance="high" />
+    <MSBuild Targets="Build" Projects="@(ProjectReference)" Properties="OutputPath=$([System.IO.Path]::GetFullPath('$(OutputPath)'))">
+    </MSBuild>
+    <Message Text="Copying files to output dir..." Importance="high" />
+    <Copy SourceFiles="@(Content)" DestinationFiles="@(Content->'$(OutputPath)%(RelativeDir)%(Filename)%(Extension)')" />
+    <Message Text="Finished Build JSProject '$(MSBuildProjectFile)'." Importance="high">
+    </Message>
+  </Target>
+  <Target Name="CreateManifestResourceNames" Condition="'@(ResxWithNoCulture)@(ResxWithCulture)@(NonResxWithNoCulture)@(NonResxWithCulture)'!=''" />
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build">
+  </Target>
+  <Target Name="Clean">
+    <!--
+    <Message Text="Cleaning Output files..." Importance="high" />
+    <Delete Files="@([System.IO.Path]::GetFullPath('$(OutputPath)'))" />
+    -->
+    <Message Text="Cleaning Output dir ($([System.IO.Path]::GetFullPath('$(OutputPath)')))..." Importance="high" />
+    <RemoveDir Directories="$([System.IO.Path]::GetFullPath('$(OutputPath)'))" />
+  </Target>
+</Project>
