@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
@@ -42,9 +42,6 @@
     <Content Include="layouts\Empty\EmptyLayout.html" />
     <Content Include="layouts\Empty\EmptyLayout.js" />
     <Content Include="js\dx.all.js" />
-    
-    
-    
     <Content Include="js\globalize.js" />
     <Content Include="js\jquery-1.9.1.min.js" />
     <Content Include="js\knockout-2.2.1.js" />
